@@ -29,7 +29,7 @@ Resources:
     Type: AWS::Lambda::Function
     Properties:
         Description: "Sample Hello World Lambda"
-        Runtime: python3.7
+        Runtime: python3.10
         Handler: index.lambda_handler
         Role: !GetAtt sampleWebsiteLambdaFunctionRole.Arn
         Code:
@@ -155,7 +155,7 @@ Resources:
     Properties:
       Description: Secrets Manager Rotation Lambda
       Handler: index.lambda_handler
-      Runtime: python3.7
+      Runtime: python3.10
       Environment:
         Variables:
           CFDISTROID: !Ref cloudFrontDistribution
@@ -492,7 +492,7 @@ Resources:
     Type: AWS::Lambda::Function
     Properties:
       Description: "Authorizer Lambda Function"
-      Runtime: python3.7
+      Runtime: python3.10
       # Timeout has to be atleast 30 sec
       Timeout: 900
       Handler: index.lambda_handler
