@@ -504,6 +504,7 @@ Resources:
                 import json
                 import boto3
                 import base64
+                import secrets
                 from botocore.exceptions import ClientError
 
                 region_name = '${region}'
@@ -556,10 +557,11 @@ Resources:
                     response={
                         "isAuthorized":False
                     }
-                    if (event['headers']['x-origin-verify'] == secret_HeaderValue or event['headers']['x-origin-verify'] == pending_secret_HeaderValue):
-                        response={
-                            "isAuthorized":True
-                        }
+                    if secret_Header := event['headers']['x-origin-verify']:
+                        if secrets.compare_digest(secret_Header == secret_HeaderValue) or secrets.compare_digest(secret_Header == pending_secret_HeaderValue):
+                            response={
+                                "isAuthorized":True
+                            }
                     print (response)
                     return response
               - region: !Ref "AWS::Region"
