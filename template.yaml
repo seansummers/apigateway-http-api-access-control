@@ -558,7 +558,7 @@ Resources:
                         "isAuthorized":False
                     }
                     if secret_Header := event['headers']['x-origin-verify']:
-                        if secrets.compare_digest(secret_Header == secret_HeaderValue) or secrets.compare_digest(secret_Header == pending_secret_HeaderValue):
+                        if secrets.compare_digest(secret_Header, secret_HeaderValue) or secrets.compare_digest(secret_Header, pending_secret_HeaderValue):
                             response={
                                 "isAuthorized":True
                             }
